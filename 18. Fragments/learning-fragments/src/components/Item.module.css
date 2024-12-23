@@ -1,0 +1,12 @@
+.span {
+  min-width: 150px;
+  display: inline-block;
+}
+
+.buyButton {
+  float: right;
+}
+
+.selected {
+  background-color: red;
+}
