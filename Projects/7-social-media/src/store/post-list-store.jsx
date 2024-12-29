@@ -5,7 +5,6 @@ export const PostList = createContext({
   addPost: () => {},
   deletePost: () => {},
   addInitialPost: () => {},
-  fetching: false,
 });
 const postListReducer = (currentPostList, action) => {
   let newPostList = currentPostList;
@@ -45,22 +44,6 @@ const PostListProvider = ({ children }) => {
       },
     });
   };
-  const [fetching, setFetching] = useState(true);
-  useEffect(() => {
-    const controller = new AbortController();
-    const signal = controller.signal;
-
-    fetch("https://dummyjson.com/posts", { signal })
-      .then((res) => res.json())
-      .then((data) => {
-        addInitialPost(data.posts);
-        setFetching(false);
-      });
-
-    return () => {
-      controller.abort();
-    };
-  }, []);
 
   return (
     <PostList.Provider
@@ -68,7 +51,6 @@ const PostListProvider = ({ children }) => {
         postList: postList,
         addPost: addPost,
         deletePost: deletePost,
-        fetching: fetching,
       }}
     >
       {children}
