@@ -2,7 +2,9 @@ import { IoPersonSharp } from "react-icons/io5";
 import { FaHeart } from "react-icons/fa";
 import { FaCartArrowDown } from "react-icons/fa";
 import { Link } from "react-router-dom";
+import { useSelector } from "react-redux";
 const Header = () => {
+  const bag = useSelector((store) => store.bag);
   return (
     <header>
       <Link to={"/"}>
@@ -46,7 +48,7 @@ const Header = () => {
           <div className="action_container">
             <FaCartArrowDown />
             <span className="action_name">Bag</span>
-            <span className="bag-item-count">0</span>
+            <span className="bag-item-count">{bag.length}</span>
           </div>
         </Link>
       </div>
